@@ -5,7 +5,6 @@ use hyper::{Body, Request, Response};
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
-use std::sync::{Arc};
 
 use crate::handshake;
 
@@ -14,12 +13,12 @@ pub fn make_handler() -> MakeHandler {
 }
 
 pub struct Handler {
-  streams: Arc<Option<Upgraded>>
+  streams: Option<Upgraded>
 }
 
 impl Handler {
   pub fn new() -> Self {
-    Handler { streams: Arc::new(None) }
+    Handler { streams: None }
   }
 }
 
